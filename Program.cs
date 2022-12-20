@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
-using picacomic;
 using picacomic.Http.Response;
 
 namespace picacomic
@@ -14,13 +12,13 @@ namespace picacomic
     }
     class Program
     {
-        static async System.Threading.Tasks.Task Main(string[] args)
+        static async Task Main(string[] args)
         {
             if (args.Length == 0 || string.IsNullOrEmpty(args[0]))
             {
                 throw new Exception("请查看文档设置账号密码");
             }
-            List<Account> Accounts = new List<Account>();
+            List<Account> Accounts = new();
             foreach (var item in args[0].Split('|'))
             {
                 if (!string.IsNullOrEmpty(item))
@@ -48,7 +46,7 @@ namespace picacomic
 
         private static void Log(object o)
         {
-            Console.WriteLine($"[{DateTime.Now.ToString("HH:mm:ss")}]{o.ToString()}");
+            Console.WriteLine($"[{DateTime.Now:HH:mm:ss}]{o}");
         }
 
         private static async Task PunchAsync(string username,string password,int index)
